@@ -9,8 +9,26 @@
     "lint": "next lint",
     "lint:css": "stylelint \"**/*{.css,.scss}\"",
     "lint:ts": "eslint . --ext .ts,.tsx",
+    "lints": "npm run tsc:check && npm run lint:ts ",
     "lint:editorconfig": "editorconfig-checker",
     "tsc:check": "tsc --pretty --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lints"
+    }
+  },
+  "lint-staged": {
+    "*.(ts|tsx)": [
+      "npm run lint:ts"
+    ],
+    "*.{css,scss}": [
+      "npm run lint:css"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "@types/node": "20.5.7",
@@ -49,6 +67,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-perf": "^3.3.1",
     "eslint-plugin-unicorn": "^48.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "prettier": "3.0.2"
   }
 }
