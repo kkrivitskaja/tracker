@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black">
       <div className="w-full max-w-[600px] mx-auto text-white">
