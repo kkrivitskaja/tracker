@@ -1,3 +1,108 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-perf", "prettier", "unicorn"],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:promise/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:react-perf/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["external", "builtin", "internal", ["parent", "sibling"], "index"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": 0,
+    "prettier/prettier": "error",
+    "unicorn/prevent-abbreviations": 0,
+    "unicorn/no-array-reduce": 0,
+    "unicorn/no-null": 0,
+    "unicorn/no-array-callback-reference": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/prefer-query-selector": "off",
+    "react/react-in-jsx-scope": 0,
+    "react/button-has-type": 0,
+    "unicorn/no-array-for-each": 0,
+    "unicorn/prefer-array-find": 0,
+    "unicorn/no-useless-undefined": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "react-perf/jsx-no-new-array-as-prop": 0,
+    "react-perf/jsx-no-new-function-as-prop": 0,
+    "promise/always-return": 0,
+    "promise/catch-or-return": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/no-array-index-key": 0,
+    "react/require-default-props": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      {
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-console": [
+      2,
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "unicorn/prefer-ternary": "off"
+  }
 }
