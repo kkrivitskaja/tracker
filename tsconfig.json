@@ -18,8 +18,11 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./*"]
+  "paths": {
+      "~styles/*": ["./assets/styles/*"],
+      "~icons/*": ["./assets/icons/*"],
+      "~components/*": ["./components/*"],
+      "~utils/*": ["./utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./jest.setup.ts"],
