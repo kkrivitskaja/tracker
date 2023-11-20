@@ -1,0 +1,30 @@
+/* Flex Container Mixin */
+@mixin flexC($inline: false) {
+  @if $inline {
+    display: inline-flex;
+  } @else {
+    display: flex;
+  }
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text Ellipsis Mixin */
+@mixin text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Flexible Box Mixin */
+@mixin flex($al: stretch, $jf: flex-start, $inline: false) {
+  @if $inline {
+    display: inline-flex;
+  } @else {
+    display: flex;
+  }
+
+  align-items: $al;
+  justify-content: $jf;
+}
