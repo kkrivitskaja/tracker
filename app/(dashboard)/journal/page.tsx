@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { Fragment } from 'react'
 
-import CreateEntry from '~components/CreateEntry/CreateEntry'
+import CreateEntry from '~components/CreateEntry'
 import EntryCard from '~components/EntryCard/EntryCard'
 import { Entry } from '~components/EntryCard/utils'
 import { getUserFromClerkID } from '~utils/auth'
@@ -26,14 +26,12 @@ const getEntries = async (): Promise<Entry[]> => {
 const JournalPage = async () => {
   const data = await getEntries()
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid gap-4">
       <CreateEntry />
       {data?.map((entry) => (
-        <div key={entry.id}>
-          <Link href={`/journal/${entry.id}`}>
-            <EntryCard entry={entry} />
-          </Link>
-        </div>
+        <Fragment key={entry.id}>
+          <EntryCard entry={entry} />
+        </Fragment>
       ))}
     </div>
   )

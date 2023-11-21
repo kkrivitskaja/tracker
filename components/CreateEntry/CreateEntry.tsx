@@ -4,6 +4,7 @@
 
 import { useRouter } from 'next/navigation'
 
+import Button from '~components/Button'
 import { createNewEntry } from '~utils/api'
 import updateCacheForPaths from '~utils/revalidateCache'
 
@@ -14,15 +15,8 @@ function CreateEntry() {
     updateCacheForPaths(['/journal'])
     router.push(`/journal/${data.id}`)
   }
-  // FIXME:move to the reusable button
-  return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div className="cursor-pointer overflow-hidden rounded-lg bg-white shadow" onClick={handleClick}>
-      <div className="px-4 py-5 sm:p-6">
-        <span className="text-3xl">New Entry</span>
-      </div>
-    </div>
-  )
+
+  return <Button onClick={handleClick}>+ Add</Button>
 }
 
 export default CreateEntry

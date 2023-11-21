@@ -1,3 +1,6 @@
+import Link from 'next/link'
+
+import styles from './EntryCard.module.scss'
 import { Entry } from './utils'
 
 export interface EntryCardProps {
@@ -12,11 +15,13 @@ function EntryCard({ entry }: EntryCardProps) {
   })
 
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
-      <div className="px-4 py-5 sm:px-6">{date}</div>
-      <div className="px-4 py-5 sm:p-6">summary</div>
-      <div className="px-4 py-4 sm:px-6">entry.analysis?.mood</div>
-    </div>
+    <li key={entry.id} className={styles.root}>
+      <Link href={`/journal/${entry.id}`}>
+        <div className={styles.cell}>{date}</div>
+        <div className={styles.cell}>{entry.analysis?.subject}</div>
+        <div className={styles.cell}>{entry.analysis?.mood}</div>
+      </Link>
+    </li>
   )
 }
 
