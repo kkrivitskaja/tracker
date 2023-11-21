@@ -53,7 +53,7 @@ function EntryEditor({ entry }: EntryEditorProps) {
         <textarea className="p-8 text-xl" value={content} onChange={handleContentChange} />
       </div>
       <div className="border-l border-black/5">
-        <div className="h-[100px] p-8 border-b border-b-gray-200" style={{ background: currentEntry.analysis?.color }}>
+        <div className="h-[100px] p-8 border-b border-b-gray-200" style={{ background: currentEntry?.analysis?.color }}>
           <h2 className="text-2xl text-black ">Analysis</h2>
         </div>
         <div>

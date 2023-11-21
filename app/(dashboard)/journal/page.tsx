@@ -2,10 +2,11 @@ import Link from 'next/link'
 
 import CreateEntry from '~components/CreateEntry/CreateEntry'
 import EntryCard from '~components/EntryCard/EntryCard'
+import { Entry } from '~components/EntryCard/utils'
 import { getUserFromClerkID } from '~utils/auth'
 import prisma from '~utils/prisma'
 
-const getEntries = async () => {
+const getEntries = async (): Promise<Entry[]> => {
   const user = await getUserFromClerkID()
   const data = await prisma.journalEntry.findMany({
     where: {
@@ -13,6 +14,9 @@ const getEntries = async () => {
     },
     orderBy: {
       createdAt: 'desc',
+    },
+    include: {
+      analysis: true,
     },
   })
 

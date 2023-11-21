@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 
+import { analyzeEntry } from '~utils/ai'
 import { getUserFromClerkID } from '~utils/auth'
 import prisma from '~utils/prisma'
 
@@ -23,7 +24,23 @@ export const PATCH = async (request: Request, { params }: { params: { id: string
       },
       data: content,
     })
-    return NextResponse.json({ data: { ...updatedEntry } })
+
+    const analysis = await analyzeEntry(updatedEntry)
+    const updatedAnalysis = await prisma.entryAnalysis.upsert({
+      where: {
+        entryId: updatedEntry.id,
+      },
+      update: {
+        ...analysis,
+      },
+      create: {
+        entryId: updatedEntry.id,
+        userId: user.id,
+        ...analysis,
+      },
+    })
+
+    return NextResponse.json({ data: { ...updatedEntry, analysis: updatedAnalysis } })
   } catch (error) {
     console.error('Error updating journal entry:', error)
 

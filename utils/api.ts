@@ -3,7 +3,7 @@ import { Entry } from '~components/EntryCard/utils'
 type Content = { content: string }
 
 const createURL = (path: string): string => `${window.location.origin}${path}`
-
+// eslint-disable-next-line import/prefer-default-export
 export const createNewEntry = async (): Promise<Entry> => {
   const res = await fetch(
     new Request(createURL('/api/entry'), {
@@ -15,7 +15,6 @@ export const createNewEntry = async (): Promise<Entry> => {
     throw new Error('Failed to add a new entry')
   }
   const data = await res.json()
-
   return data.data
 }
 

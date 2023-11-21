@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
+import { analyzeEntry } from '~utils/ai'
 import { getUserFromClerkID } from '~utils/auth'
 import prisma from '~utils/prisma'
 
@@ -9,7 +10,7 @@ interface CreateJournalEntryData {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const POST = async (request: NextRequest) => {
+export const POST = async (request: Request) => {
   try {
     const data: CreateJournalEntryData = await request.json()
     if (!data.content) {
@@ -21,6 +22,14 @@ export const POST = async (request: NextRequest) => {
       data: {
         userId: user.id,
         content: 'Cool journal entry',
+      },
+    })
+    const analysis = await analyzeEntry(entry.content)
+    await prisma.entryAnalysis.create({
+      data: {
+        entryId: entry.id,
+        userId: user.id,
+        ...analysis,
       },
     })
 
