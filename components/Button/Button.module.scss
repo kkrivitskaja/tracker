@@ -1,5 +1,4 @@
-@import url('mixins');
-@import url('variables');
+@import 'mixins', 'variables';
 
 .root {
   position: relative;

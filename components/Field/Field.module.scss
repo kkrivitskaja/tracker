@@ -1,4 +1,4 @@
-@import url('variables');
+@import 'mixins', 'variables';
 
 @mixin floting-placeholder-animation($transform, $scale) {
   .placeholder.floating {

@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
 
-import EntryCard from '~components/EntryCard/EntryCard'
+import EntriesGroup from '~components/EntriesGroup'
+import EntriesList from '~components/EntriesList'
+import EntryCard from '~components/EntryCard'
 import { Entry } from '~components/EntryCard/utils'
 import EntryControls from '~components/EntryControls'
 import { getUserFromClerkID } from '~utils/auth'
@@ -28,11 +30,15 @@ const JournalPage = async () => {
   return (
     <>
       <EntryControls />
-      {data?.map((entry) => (
-        <Fragment key={entry.id}>
-          <EntryCard entry={entry} />
-        </Fragment>
-      ))}
+      <EntriesList empty={data.length === 0} placeholder={data.length === 0 ? 'Add a new entry' : 'null'}>
+        <EntriesGroup>
+          {data?.map((entry) => (
+            <Fragment key={entry.id}>
+              <EntryCard entry={entry} />
+            </Fragment>
+          ))}
+        </EntriesGroup>
+      </EntriesList>
     </>
   )
 }
