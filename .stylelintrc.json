@@ -10,6 +10,7 @@
     "rules": {
         "prettier/prettier": true,
         "at-rule-no-unknown": null,
+        "at-rule-empty-line-before": null,
         "scss/at-rule-no-unknown": [
             true,
             {
@@ -24,6 +25,12 @@
             }
         ],
         "order/order": ["custom-properties", "declarations"],
-        "order/properties-order": ["width", "height"]
+        "order/properties-order": ["width", "height"],
+        "selector-class-pattern": [
+      "^[a-zA-Z]+$",
+      {
+        "message": "Class names should be in camelCase."
+      }
+    ]
     }
 }

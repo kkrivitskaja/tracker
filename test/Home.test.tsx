@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import Home from '@/app/page'
+import Home from '../app/page'
 
 describe('Journal', () => {
   it('Should have "Welcome to MoodTracker" text at the Home page', () => {
