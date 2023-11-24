@@ -6,7 +6,7 @@
   grid-template-columns: repeat(3, auto);
   user-select: none;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px #0000001a;
   transition: background-color 0.3s ease;
 
   &:hover {
