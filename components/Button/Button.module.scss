@@ -1,5 +1,4 @@
-@import url('mixins');
-@import url('variables');
+@import 'mixins', 'variables'; /* stylelint-disable-line */
 
 .root {
   position: relative;
