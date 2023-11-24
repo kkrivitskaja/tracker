@@ -1,6 +1,10 @@
+import { loadQARefineChain } from 'langchain/chains'
+import { Document } from 'langchain/document'
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { OpenAI } from 'langchain/llms/openai'
-import { StructuredOutputParser, OutputFixingParser } from 'langchain/output_parsers'
+import { OutputFixingParser, StructuredOutputParser } from 'langchain/output_parsers'
 import { PromptTemplate } from 'langchain/prompts'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import { z } from 'zod'
 
 import { Entry } from '~components/EntryCard/utils'
@@ -12,6 +16,12 @@ type StructuredOutput = {
   summary: string
   color: string
   sentimentScore: number
+}
+
+type Entries = {
+  id?: string
+  createdAt: Date
+  content: string
 }
 
 type PartialEntry = Pick<Entry, 'id' | 'userId' | 'createdAt' | 'updatedAt' | 'content'>
@@ -65,4 +75,27 @@ export const analyzeEntry = async (entry: PartialEntry): Promise<StructuredOutpu
     const fix = await fixParser.parse(output)
     return fix
   }
+}
+
+export const askQuestion = async (question: string, entries: Entries[]): Promise<string> => {
+  const docs = entries.map((entry) => {
+    return new Document({
+      pageContent: entry.content,
+      metadata: { source: entry.id, date: entry.createdAt },
+    })
+  })
+
+  const model = new OpenAI({ temperature: 0 })
+  const chain = loadQARefineChain(model)
+  // groups of vectors
+  const embeddings = new OpenAIEmbeddings()
+  const store = await MemoryVectorStore.fromDocuments(docs, embeddings)
+  const relevantDocs = await store.similaritySearch(question)
+
+  const res = await chain.call({
+    input_documents: relevantDocs,
+    question,
+  })
+
+  return res.output_text
 }

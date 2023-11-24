@@ -1,0 +1,112 @@
+@import url('variables');
+
+@mixin floting-placeholder-animation($transform, $scale) {
+  .placeholder.floating {
+    & ~ .value {
+      margin-top: $transform;
+    }
+  }
+
+  &:focus .placeholder.floating,
+  &:focus-within .placeholder.floating,
+  .placeholder.floating.float {
+    transform: scale($scale) translateY(-$transform);
+  }
+}
+
+.field {
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-md;
+  font-size: $body-font-size-sm;
+  display: inline-flex;
+
+  /* Cursor */
+  &.pointer {
+    .container {
+      cursor: pointer;
+    }
+  }
+
+  &.text {
+    .container {
+      cursor: text;
+    }
+  }
+
+  &.disabled {
+    .container {
+      cursor: not-allowed;
+    }
+  }
+
+  .container {
+    width: 100%;
+    padding: $spacing-xs $spacing-sm;
+    color: black;
+    font: inherit;
+
+    @include flex(center, flex-start, true);
+
+    .content {
+      flex: 1 1 auto;
+      width: calc(100% - #{$spacing-md * 2});
+      height: 100%;
+      position: relative;
+
+      @include flexC();
+
+      .placeholder,
+      .value::placeholder,
+      .value input::placeholder {
+        color: black;
+      }
+
+      .placeholder {
+        position: absolute;
+        left: 0;
+        right: 0;
+        transform-origin: top left;
+        transition: transform $duration-md ease;
+        user-select: none;
+        pointer-events: none;
+
+        @include text-ellipsis;
+      }
+
+      .value {
+        display: inline-flex;
+        align-items: center;
+        font: inherit;
+        color: inherit;
+        flex: 1 1 auto;
+        overflow: hidden;
+        cursor: inherit;
+
+        &,
+        & > * {
+          @include text-ellipsis();
+        }
+      }
+    }
+
+    /* Icon and IconAfter styles */
+    .icon ~ .content {
+      width: calc(100% - #{$spacing-lg * 2});
+      margin-left: $spacing-sm;
+    }
+
+    .content ~ .iconAfter {
+      margin-left: $spacing-sm;
+    }
+
+    .icon,
+    .iconAfter {
+      flex: 0 0 auto;
+
+      @include flexC(true);
+    }
+  }
+}

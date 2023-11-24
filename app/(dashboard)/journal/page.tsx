@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 
-import CreateEntry from '~components/CreateEntry'
 import EntryCard from '~components/EntryCard/EntryCard'
 import { Entry } from '~components/EntryCard/utils'
+import EntryControls from '~components/EntryControls'
 import { getUserFromClerkID } from '~utils/auth'
 import prisma from '~utils/prisma'
 
@@ -26,14 +26,14 @@ const getEntries = async (): Promise<Entry[]> => {
 const JournalPage = async () => {
   const data = await getEntries()
   return (
-    <div className="grid gap-4">
-      <CreateEntry />
+    <>
+      <EntryControls />
       {data?.map((entry) => (
         <Fragment key={entry.id}>
           <EntryCard entry={entry} />
         </Fragment>
       ))}
-    </div>
+    </>
   )
 }
 
