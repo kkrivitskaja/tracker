@@ -1,4 +1,4 @@
-@import 'mixins', 'variables';
+@import 'mixins', 'variables'; /* stylelint-disable-line */
 
 @mixin floting-placeholder-animation($transform, $scale) {
   .placeholder.floating {
