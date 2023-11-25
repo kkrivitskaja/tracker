@@ -1,0 +1,36 @@
+@import 'variables'; /* stylelint-disable-line */
+
+.root {
+  position: relative;
+  border-right: 1px solid gray;
+}
+
+.inner {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 200px;
+  height: 100vh;
+  padding-top: $spacing-sm * 3;
+}
+
+.header {
+  width: 200px;
+  padding: $spacing-sm * 3 $spacing-lg;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $spacing-sm * 3;
+  overflow: auto;
+  width: 200px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: $spacing-sm * 3 $spacing-lg;
+}

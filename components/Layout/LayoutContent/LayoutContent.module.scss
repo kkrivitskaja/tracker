@@ -1,0 +1,31 @@
+@import 'variables'; /* stylelint-disable-line */
+
+.root {
+  width: calc(100vw - 260px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: $spacing-sm * 2 $spacing-sm * 2;
+    margin-left: auto;
+  }
+
+  .body {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: $spacing-sm * 4;
+  }
+}

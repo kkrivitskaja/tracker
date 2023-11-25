@@ -1,0 +1,35 @@
+@import 'mixins', 'variables'; /* stylelint-disable-line */
+
+.root {
+  position: relative;
+  border: none;
+  outline: none;
+  width: auto;
+  max-width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.before,
+.after {
+  flex: 0 0 auto;
+  background-color: transparent;
+
+  @include flexC();
+
+  svg {
+    vertical-align: bottom;
+    transition: fill $duration-sm ease;
+  }
+}
+
+.label {
+  flex: 1 1 auto;
+  text-align: inherit;
+  user-select: none;
+  color: inherit;
+  background-color: transparent;
+  font: inherit;
+  line-height: inherit;
+  margin: 0 $spacing-xs;
+}
